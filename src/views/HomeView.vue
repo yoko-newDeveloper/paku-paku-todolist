@@ -1,5 +1,11 @@
 <template>
   <v-container class="grey lighten-5">
+    <v-row>
+      <v-col>
+        <v-text-field v-model="todoInput" clearable @keydown.enter="add"></v-text-field>
+        {{ todoInput }}
+      </v-col>
+    </v-row>
     <v-row no-gutters>
       <v-col>
         <!-- <v-card>の中に文字を書く -->
@@ -29,10 +35,10 @@ import HelloWorld from '../components/HelloWorld.vue'
 @Component({ components: { HelloWorld } })
 export default class HomeView extends Vue {
   todos: Todo[] = []
+  todoInput = ''
 
-  mounted () {
-    this.todos.push(new Todo('ジャージャー麺食べたい'))
-    this.todos.push(new Todo('餃子食べたい'))
+  add () {
+    this.todos.push(new Todo(this.todoInput))
   }
 }
 </script>
